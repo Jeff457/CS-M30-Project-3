@@ -5,13 +5,21 @@
 
                 .STACK 4096
 
+ASCIIToDecimal  PROTO   C, operandOne:DWORD, operator:BYTE, operandTwo:DWORD
+DecimalToASCII  PROTO   C, operandOne:DWORD, operator:BYTE, operandTwo:DWORD
 
                 .DATA
 _CR             EQU     0Dh             ;Carriage return character
 _LF             EQU     0Ah             ;Line Feed (new line) character
 NULL_PTR        EQU     0
+_SPACE          EQU     20h             ;Space character
 
-userPrompt      byte    "Please enter an equation (max 25 characters): ", _CR, _LF
+_ADD            EQU     2Bh             ;Represents +
+_SUB            EQU     2Dh             ;Represents -
+_MULTIPLY       EQU     2Ah             ;Represents *
+_DIVIDE         EQU     2Fh             ;Represents /
+
+userPrompt      byte    "Please enter an equation (max 25 characters): ", _CR, _LF          ;Must be of the form "Number ArithmeticOperator Number"
 BytesWritten    dword   0
 
 userInput       byte    27 dup (0)      ;Max 25 characters + CR + LF 
